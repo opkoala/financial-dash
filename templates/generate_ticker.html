@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find Statement Income by entering a Stock Ticker</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <h1>Find a Statement Income by entering a Stock Ticker!</h1>
+    {% if error %}
+        <div style="color: red;">{{ error }}</div>
+    {% endif %}
+    <form action="{{ url_for('generate_ticker') }}" method="POST">
+        <input type="text" name="query" placeholder="Enter Company Ticker or Name" required>
+        <button type="submit">Search</button>
+    </form>
+   
+    <h2>Examples of Common Companies and Their Tickers</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Company (Ticker)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>1</strong></td><td>APPLE (AAPL)</td></tr>
+            <tr><td><strong>2</strong></td><td>NVIDIA (NVDA)</td></tr>
+            <tr><td><strong>3</strong></td><td>MICROSOFT (MSFT)</td></tr>
+            <tr><td><strong>4</strong></td><td>AMAZON (AMZN)</td></tr>
+            <tr><td><strong>5</strong></td><td>META PLATFORMS (META)</td></tr>
+            <tr><td><strong>6</strong></td><td>ALPHABET (GOOGL)</td></tr>
+            <tr><td><strong>7</strong></td><td>BERKSHIRE HATHAWAY (BRK.B)</td></tr>
+            <tr><td><strong>8</strong></td><td>ALPHABET INC CL C (GOOG)</td></tr>
+            <tr><td><strong>9</strong></td><td>TESLA (TSLA)</td></tr>
+            <tr><td><strong>10</strong></td><td>JP MORGAN (JPM)</td></tr>
+            <tr><td><strong>11</strong></td><td>COSTCO (COST)</td></tr>
+            <tr><td><strong>12</strong></td><td>WALMART (WMT)</td></tr>
+            <tr><td><strong>13</strong></td><td>NETFLIX (NFLX)</td></tr>
+            <tr><td><strong>14</strong></td><td>BANK OF AMERICA (BAC)</td></tr>
+            <tr><td><strong>15</strong></td><td>ORACLE (ORCL)</td></tr>
+        </tbody>
+    </table>
+</body>
+</html>

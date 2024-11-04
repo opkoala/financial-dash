@@ -1,0 +1,53 @@
+<!--  Citation for turning HTML page dynamically using Django-->
+<!-- Nov/02/2024-->
+<!-- https://www.youtube.com/watch?v=xIgPMguqyws&t=233s -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Income Statement</title>
+</head>
+<body>
+    <h1>Income Statement</h1>
+    <p>Company: {{ company_name }}</p>
+    <p>Month Ended: {{ month_ended }}</p>
+
+    <h2>Revenues</h2>
+    <ul>
+        {% for revenue, amount in revenues %}
+            <li>{{ revenue }}: ${{ amount }}</li>
+        {% endfor %}
+    </ul>
+    <p>Total Revenues: ${{ total_revenues }}</p>
+
+    <h2>Expenses</h2>
+    <ul>
+        {% for expense, amount in expenses %}
+            <li>{{ expense }}: ${{ amount }}</li>
+        {% endfor %}
+    </ul>
+    <p>Total Expenses: ${{ total_expenses }}</p>
+
+    <h2>Net Income</h2>
+    <p>{{ net_income }}</p>
+
+    <!-- Hidden inputs to send data across pdf -->
+
+    <form action="{{ url_for('export_income_statement_pdf') }}" method="POST">
+        <input type="hidden" name="company" value="{{ company_name }}">
+        <input type="hidden" name="month_ended" value="{{ month_ended }}">
+
+        {% for revenue, amount in revenues %}
+            <input type="hidden" name="revenues[]" value="{{ revenue }}">
+            <input type="hidden" name="revenue_amounts[]" value="{{ amount }}">
+        {% endfor %}
+
+        {% for expense, amount in expenses %}
+            <input type="hidden" name="expenses[]" value="{{ expense }}">
+            <input type="hidden" name="expense_amounts[]" value="{{ amount }}">
+        {% endfor %}
+
+        <button type="submit">Download PDF</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name="robots" content="noindex,noarchive, nofollow" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+
+</head>
+<body>
+    <header>
+        <h1>
+            Income Statement Generator
+        </h1>
+    </header>
+</body>
+</html>
+
+<nav>
+    <a href="{{ url_for('index') }}"> Home</a>
+    <a href="{{ url_for('generate_income_statement') }}" > Generate Income Statement</a>
+    <a href="{{ url_for('generate_ticker') }}" > Search up Ticker </a>
+    
+</nav>
+<main>
+
+<body>
+    <header>
+        <h1>Welcome to the Financial Dashboard</h1>
+        <p>Track and generate income statements for companies effortlessly.</p>
+    </header>
+    <main>
+    <img src="{{ url_for('static', filename='business.jpg') }}" alt="Business Image" style="width: 100%; max-width: 800; border: none">
+    </main>
+</body>
+</html>

@@ -9,18 +9,17 @@
 <body>
     <h1>Generate Your Income Statement</h1>
     <p><b>Easily generate a comprehensive Income Statement in one go, allowing you to track your company's finance performance effortlessly!</b></p>
-    <form id="incomeStatementForm" action="/generate_income_statement" method="POST">
+    <form id="incomeStatementForm" action="{{ url_for('generate_income_statement') }}" method="POST">
         <div>
             <input type="text" name="company" placeholder="Company Name" required>
         </div>
-        <h2>Income Statement </h2>
+        <h2>Income Statement</h2>
         <div>
             <input type="text" name="month_ended" placeholder="Month Ended" required>
         </div>
 
         <h2>Revenues</h2>
         <div id="revenues">
-            <!-- revenue entry -->
             <div class="revenue-entry">
                 <input type="text" name="revenues[]" placeholder="Revenue name" required>
                 <input type="number" name="revenue_amounts[]" placeholder="Amount" step="0.01" required>
@@ -28,12 +27,10 @@
                 <br>
             </div>
         </div>
-        <!-- Button to add a new revenue entry -->
         <button type="button" onclick="addRevenue()">Add Revenue</button>
 
         <h2>Expenses</h2>
         <div id="expenses">
-            <!-- expense entry -->
             <div class="expense-entry">
                 <input type="text" name="expenses[]" placeholder="Expense name" required>
                 <input type="number" name="expense_amounts[]" placeholder="Amount" step="0.01" required>
@@ -41,11 +38,9 @@
                 <br>
             </div>
         </div>
-        <!-- Button to add a new expense entry -->
         <button type="button" onclick="addExpense()">Add Expense</button>
 
         <button type="submit">Generate Income Statement</button>
     </form>
-
 </body>
 </html>

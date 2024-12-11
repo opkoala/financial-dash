@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <title>Review Schedule</title>
+</head>
+<body>
+    <h1>Review Schedule</h1>
+
+    <div>
+        <p><strong>Review ID:</strong> {{ review_id }}</p>
+        <p><strong>Increment (Days):</strong> {{ increment }}</p>
+    </div>
+
+    <div>
+        <h3>Server Response:</h3>
+        {% if response and response is not string %}
+        <ul>
+            {% for review in response %}
+            <li>
+                <strong>Review ID:</strong> {{ review.id }}<br>
+                <strong>Review Date:</strong> {{ review.review_date }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No data found: {{ response }}</p>
+        {% endif %}
+    </div>
+
+    <a href="/">Back to Main </a>
+</body>
+</html>

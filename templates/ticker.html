@@ -6,29 +6,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<head>
     <meta charset="UTF-8">
-    <title>Income Statement for {{ query }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenue and Gross Profit for {{ rev_query }}</title>
 </head>
 <body>
-    <h1>Income Statement for {{ query }}</h1>
+    <h1>Revenue and Gross Profit for {{ rev_query }}</h1>
 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Year Ended</th>
-                <th>About</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for year_ended, about in ticker.items() %}
-                <tr>
-                    <td>{{ year_ended }}</td>
-                    <td>{{ about }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <ul>
+        <li>Revenues: ${{ income_statement.revenues }}</li>
+        <li>Gross Profit: ${{ income_statement.gross_profit }}</li>
+    </ul>
 
-    <a href="{{ url_for('generate_ticker') }}">Search for Another Company</a>
+    <a href="/generate_ticker">Go Back</a>
 </body>
 </html>

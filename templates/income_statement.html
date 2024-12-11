@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     <title>Income Statement</title>
 </head>
 <body>
@@ -31,23 +32,16 @@
     <h2>Net Income</h2>
     <p>{{ net_income }}</p>
 
-    <!-- Hidden inputs to send data across pdf -->
+    <h2>Create a schedule and see when do you need to review</h2>
+    <form action="/submit_review" method="post">
+        <label for="review_id">Review ID:</label><br>
+        <input type="text" id="review_id" name="review_id" required><br><br>
 
-    <form action="{{ url_for('export_income_statement_pdf') }}" method="POST">
-        <input type="hidden" name="company" value="{{ company_name }}">
-        <input type="hidden" name="month_ended" value="{{ month_ended }}">
+        <label for="increment">Increment:</label><br>
+        <input type="number" id="increment" name="increment" ><br><br>
 
-        {% for revenue, amount in revenues %}
-            <input type="hidden" name="revenues[]" value="{{ revenue }}">
-            <input type="hidden" name="revenue_amounts[]" value="{{ amount }}">
-        {% endfor %}
-
-        {% for expense, amount in expenses %}
-            <input type="hidden" name="expenses[]" value="{{ expense }}">
-            <input type="hidden" name="expense_amounts[]" value="{{ amount }}">
-        {% endfor %}
-
-        <button type="submit">Download PDF</button>
+        <button type="submit">Submit</button>
     </form>
+    
 </body>
 </html>

@@ -1,0 +1,68 @@
+<!-- Citation for the usage of calling google map javascript -->
+<!-- Date Nov/15/2024 -->
+<!-- Adapted From 
+https://blogs.perficient.com/2020/08/06/step-by-step-guide-on-calling-google-map-javascript-api-for-beginners-2020/ -->
+
+<!-- Citation for loading the map-->
+<!-- Date Nov/15/2024 -->
+<!-- Adapted from
+https://www.w3schools.com/jsref/event_onload.asp -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <title>Search Location</title>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key="></script>
+</head>
+<body>
+    <h1>Search Location</h1>
+
+    {% if error %}
+        <div style="color: red;">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST">
+        <input type="text" name="map_query" placeholder="Enter a company name or address" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if latitude and longitude %}
+        <h2>Address: {{ address }}</h2> 
+        <p>Latitude: {{ latitude }}</p>
+        <p>Longitude: {{ longitude }}</p>
+
+        <div id="map"></div>
+
+<!-- Display the map -->
+        <script>
+            window.onload = function() {
+                initMap(); 
+            };
+
+            function initMap() {
+                var location = { lat: {{ latitude }}, lng: {{ longitude }} };
+
+                var map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 15,
+                    center: location
+                });
+
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            }
+        </script>
+    {% endif %}
+<a href="/">Back to Main </a>
+</body>
+</html>
